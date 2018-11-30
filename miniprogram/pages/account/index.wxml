@@ -1,0 +1,7 @@
+<!-- index.wxml -->
+<view class="container">
+  <van-cell-group>
+    <van-field value="" label="账户名称" left-icon="contact"  border="{{ true }}" bind:input="input"/>
+  </van-cell-group>
+  <button bindtap="save">保存</button>
+</view>

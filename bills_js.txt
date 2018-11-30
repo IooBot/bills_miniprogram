@@ -1,0 +1,429 @@
+query collectbyid($id: ID) {
+    collectbyid: collect_by_id(id: $id) {
+        updateAt
+        remark
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        month
+        createdAt
+        allIncome
+        allPay
+        year
+        id
+        user_id {
+            id
+            openid
+            username
+            password
+            avatar
+            createdAt
+            updateAt
+        }
+    }
+}
+
+query userbyid($id: ID) {
+    userbyid: user_by_id(id: $id) {
+        id
+        openid
+        username
+        password
+        avatar
+        createdAt
+        updateAt
+    }
+}
+
+query accountbyid($id: ID) {
+    accountbyid: account_by_id(id: $id) {
+        id
+        user_id {
+            id
+            openid
+            username
+            password
+            avatar
+            createdAt
+            updateAt
+        }
+        accountName
+        createdAt
+        updateAt
+    }
+}
+
+query tagbyprops($account_id: ID, $name: String, $icon: String, $createdAt: String, $updateAt: String) {
+    tagbyprops: tag_by_props(account_id: $account_id name: $name icon: $icon createdAt: $createdAt updateAt: $updateAt) {
+        id
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        name
+        icon
+        createdAt
+        updateAt
+    }
+}
+
+query billbyid($id: ID) {
+    billbyid: bill_by_id(id: $id) {
+        id
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        tag_id {
+            id
+
+            name
+            icon
+            createdAt
+            updateAt
+        }
+        money
+        class
+        remark
+        createdAt
+        updateAt
+    }
+}
+
+
+query accountbyprops($user_id: ID, $accountName: String, $createdAt: String, $updateAt: String) {
+    accountbyprops: account_by_props(user_id: $user_id accountName: $accountName createdAt: $createdAt updateAt: $updateAt) {
+        id
+        user_id {
+            id
+            openid
+            username
+            password
+            avatar
+            createdAt
+            updateAt
+        }
+        accountName
+        createdAt
+        updateAt
+    }
+}
+
+
+
+query tagbyid($id: ID) {
+    tagbyid: tag_by_id(id: $id) {
+        id
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        name
+        icon
+        createdAt
+        updateAt
+    }
+}
+
+query collectbyprops($updateAt: String, $remark: String, $account_id: ID, $month: String, $createdAt: String, $allIncome: Float, $allPay: Float, $year: String, $user_id: ID) {
+    collectbyprops: collect_by_props(updateAt: $updateAt remark: $remark account_id: $account_id month: $month createdAt: $createdAt allIncome: $allIncome allPay: $allPay year: $year user_id: $user_id) {
+        updateAt
+        remark
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        month
+        createdAt
+        allIncome
+        allPay
+        year
+        id
+        user_id {
+            id
+            openid
+            username
+            password
+            avatar
+            createdAt
+            updateAt
+        }
+    }
+}
+
+query billbyprops($account_id: ID, $tag_id: ID, $money: Float, $class: String, $remark: String, $createdAt: String, $updateAt: String) {
+    billbyprops: bill_by_props(account_id: $account_id tag_id: $tag_id money: $money class: $class remark: $remark createdAt: $createdAt updateAt: $updateAt) {
+        id
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        tag_id {
+            id
+
+            name
+            icon
+            createdAt
+            updateAt
+        }
+        money
+        class
+        remark
+        createdAt
+        updateAt
+    }
+}
+
+query userbyprops($openid: String, $username: String, $password: String, $avatar: String, $createdAt: String, $updateAt: String) {
+    userbyprops: user_by_props(openid: $openid username: $username password: $password avatar: $avatar createdAt: $createdAt updateAt: $updateAt) {
+        id
+        openid
+        username
+        password
+        avatar
+        createdAt
+        updateAt
+    }
+}
+
+mutation createuser($id: ID!, $openid: String, $username: String, $password: String, $avatar: String, $createdAt: String, $updateAt: String) {
+    createuser: create_user(id: $id openid: $openid username: $username password: $password avatar: $avatar createdAt: $createdAt updateAt: $updateAt) {
+        id
+        openid
+        username
+        password
+        avatar
+        createdAt
+        updateAt
+    }
+}
+
+mutation deleteaccount($id: ID, $user_id: ID, $accountName: String, $createdAt: String, $updateAt: String) {
+    deleteaccount: delete_account(id: $id user_id: $user_id accountName: $accountName createdAt: $createdAt updateAt: $updateAt)
+}
+
+mutation updatebill($id: ID, $account_id: ID, $tag_id: ID, $money: Float, $class: String, $remark: String, $createdAt: String, $updateAt: String) {
+    updatebill: update_bill(id: $id account_id: $account_id tag_id: $tag_id money: $money class: $class remark: $remark createdAt: $createdAt updateAt: $updateAt) {
+        id
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        tag_id {
+            id
+
+            name
+            icon
+            createdAt
+            updateAt
+        }
+        money
+        class
+        remark
+        createdAt
+        updateAt
+    }
+}
+
+mutation deletecollect($updateAt: String, $remark: String, $account_id: ID, $month: String, $createdAt: String, $allIncome: Float, $allPay: Float, $year: String, $id: ID, $user_id: ID) {
+    deletecollect: delete_collect(updateAt: $updateAt remark: $remark account_id: $account_id month: $month createdAt: $createdAt allIncome: $allIncome allPay: $allPay year: $year id: $id user_id: $user_id)
+}
+
+mutation updateuser($id: ID, $openid: String, $username: String, $password: String, $avatar: String, $createdAt: String, $updateAt: String) {
+    updateuser: update_user(id: $id openid: $openid username: $username password: $password avatar: $avatar createdAt: $createdAt updateAt: $updateAt) {
+        id
+        openid
+        username
+        password
+        avatar
+        createdAt
+        updateAt
+    }
+}
+
+mutation updatetag($id: ID, $account_id: ID, $name: String, $icon: String, $createdAt: String, $updateAt: String) {
+    updatetag: update_tag(id: $id account_id: $account_id name: $name icon: $icon createdAt: $createdAt updateAt: $updateAt) {
+        id
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        name
+        icon
+        createdAt
+        updateAt
+    }
+}
+
+mutation createcollect($updateAt: String, $remark: String, $account_id: ID, $month: String, $createdAt: String, $allIncome: Float, $allPay: Float, $year: String, $id: ID!, $user_id: ID) {
+    createcollect: create_collect(updateAt: $updateAt remark: $remark account_id: $account_id month: $month createdAt: $createdAt allIncome: $allIncome allPay: $allPay year: $year id: $id user_id: $user_id) {
+        updateAt
+        remark
+        account_id {
+            id
+            accountName
+            createdAt
+            updateAt
+        }
+        month
+        createdAt
+        allIncome
+        allPay
+        year
+        id
+        user_id {
+            id
+            openid
+            username
+            password
+            avatar
+            createdAt
+            updateAt
+        }
+    }
+}
+
+mutation createtag($id: ID!, $account_id: ID, $name: String, $icon: String, $createdAt: String, $updateAt: String) {
+    createtag: create_tag(id: $id account_id: $account_id name: $name icon: $icon createdAt: $createdAt updateAt: $updateAt) {
+        id
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        name
+        icon
+        createdAt
+        updateAt
+    }
+}
+
+mutation deleteuser($id: ID, $openid: String, $username: String, $password: String, $avatar: String, $createdAt: String, $updateAt: String) {
+    deleteuser: delete_user(id: $id openid: $openid username: $username password: $password avatar: $avatar createdAt: $createdAt updateAt: $updateAt)
+}
+
+mutation updateaccount($id: ID, $user_id: ID, $accountName: String, $createdAt: String, $updateAt: String) {
+    updateaccount: update_account(id: $id user_id: $user_id accountName: $accountName createdAt: $createdAt updateAt: $updateAt) {
+        id
+        user_id {
+            id
+            openid
+            username
+            password
+            avatar
+            createdAt
+            updateAt
+        }
+        accountName
+        createdAt
+        updateAt
+    }
+}
+
+mutation createaccount($id: ID!, $user_id: ID, $accountName: String, $createdAt: String, $updateAt: String) {
+    createaccount: create_account(id: $id user_id: $user_id accountName: $accountName createdAt: $createdAt updateAt: $updateAt) {
+        id
+        user_id {
+            id
+            openid
+            username
+            password
+            avatar
+            createdAt
+            updateAt
+        }
+        accountName
+        createdAt
+        updateAt
+    }
+}
+
+mutation deletebill($id: ID, $account_id: ID, $tag_id: ID, $money: Float, $class: String, $remark: String, $createdAt: String, $updateAt: String) {
+    deletebill: delete_bill(id: $id account_id: $account_id tag_id: $tag_id money: $money class: $class remark: $remark createdAt: $createdAt updateAt: $updateAt)
+}
+
+mutation deletetag($id: ID, $account_id: ID, $name: String, $icon: String, $createdAt: String, $updateAt: String) {
+    deletetag: delete_tag(id: $id account_id: $account_id name: $name icon: $icon createdAt: $createdAt updateAt: $updateAt)
+}
+
+mutation updatecollect($updateAt: String, $remark: String, $account_id: ID, $month: String, $createdAt: String, $allIncome: Float, $allPay: Float, $year: String, $id: ID, $user_id: ID) {
+    updatecollect: update_collect(updateAt: $updateAt remark: $remark account_id: $account_id month: $month createdAt: $createdAt allIncome: $allIncome allPay: $allPay year: $year id: $id user_id: $user_id) {
+        updateAt
+        remark
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        month
+        createdAt
+        allIncome
+        allPay
+        year
+        id
+        user_id {
+            id
+            openid
+            username
+            password
+            avatar
+            createdAt
+            updateAt
+        }
+    }
+}
+
+mutation createbill($id: ID!, $account_id: ID, $tag_id: ID, $money: Float, $class: String, $remark: String, $createdAt: String, $updateAt: String) {
+    createbill: create_bill(id: $id account_id: $account_id tag_id: $tag_id money: $money class: $class remark: $remark createdAt: $createdAt updateAt: $updateAt) {
+        id
+        account_id {
+            id
+
+            accountName
+            createdAt
+            updateAt
+        }
+        tag_id {
+            id
+
+            name
+            icon
+            createdAt
+            updateAt
+        }
+        money
+        class
+        remark
+        createdAt
+        updateAt
+    }
+}

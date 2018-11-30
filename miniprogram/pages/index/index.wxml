@@ -1,0 +1,51 @@
+<!-- index.wxml -->
+<view class="container">
+  <!-- 用户 openid -->
+  <view class="userinfo">
+    <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})"></button>
+    <view class="name">{{userInfo.nickName}}</view>
+  </view>
+  <view class="dateWrap">
+    <picker bindchange="bindYearChange" value="{{index}}" range="{{yearList}}">
+      <button class="year">{{year}}</button>
+    </picker>
+    <picker bindchange="bindMonthChange" value="{{index}}" range="{{monthList}}">
+      <button class="month">{{month}}</button>
+    </picker>
+  </view>
+  <view class="allBills">
+    <view class="alls">所有支出:{{allPay}}</view>
+    <view class="alls">所有收入:{{allIncome}}</view>
+  </view>
+  
+  <van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tab title="最近收支">
+      <block wx:for="{{bills}}" wx:key="index">
+        <van-card data-id="{{item.id}}" desc="{{item.createdAt}}" title="{{item.remark}}" thumb="{{(item.tag_id.icon ? item.tag_id.icon:icon)}}">
+          <view slot="tags">
+            <view wx:if="{{item.class=='pay'}}">支出:{{item.money}}</view>
+            <view wx:if="{{item.class=='income'}}">收入:{{item.money}}</view>
+            <view>所属账户:{{item.account_id.accountName}}</view>
+          </view>
+        </van-card>
+      </block>
+    </van-tab>
+    <van-tab title="我的账户">
+      <button bindtap="addCount" class="addAccount">添加账户</button>
+      <block wx:for="{{acountList}}" wx:key="index">
+        <van-card bind:tap="toMyAccount" data-id="{{item.id}}" desc="描述信息" title="{{item.accountName}}" thumb="{{item.img ? item.tag_id.icon:icon}}">
+          <view slot="tags">
+            <view>总支出:{{item.collect.allPay1}}</view>
+            <view>总收入:{{item.collect.allIncome1}}</view>
+          </view>
+          <view slot="footer">
+            <van-button class="buttons" size="mini" data-id="{{item.id}}" bind:tap="toCreateBill">新建账单</van-button>
+            <van-button  class="buttons" size="mini" data-id="{{item.id}}" bind:tap="toDeleteAccount">删除账户</van-button>
+          </view>
+        </van-card>
+      </block>
+    </van-tab>
+  </van-tabs>
+  <view>
+  </view>
+</view>

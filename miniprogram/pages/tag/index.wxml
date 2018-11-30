@@ -1,0 +1,18 @@
+<!-- index.wxml -->
+<view class="container">
+  <van-cell-group>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <van-field value="{{ class }}"  clearable label="请选择分类" icon="question" placeholder="" bind:click-icon="onClickIcon1" />
+    </picker>
+
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array1}}">
+      <van-field value="{{ tag_id }}"  clearable label="请选择标签" icon="question" placeholder="222" bind:click-icon="onClickIcon2" />
+    </picker>
+
+    <van-field value="{{ remark }}" type="" label="备注" placeholder="备注"  border="{{ true }}" />
+    <van-field value="{{ money }}" type="" label="金额" placeholder="金额"  border="{{ true }}" />
+  
+  </van-cell-group>
+  <button bindtap="save">保存</button>
+
+</view>
